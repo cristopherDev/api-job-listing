@@ -8,7 +8,11 @@ const serverAPI = require('../api');
 
 server.use(express.json());
 server.use(compression());
-server.use(cors());
+server.use(cors({
+    credentials: true,
+    origin: true
+}));
+server.options('*', cors());
 server.use(morgan('combined'));
 
 server.use('/api', serverAPI);
